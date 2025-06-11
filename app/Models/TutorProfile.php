@@ -12,6 +12,7 @@ class TutorProfile extends Model
     protected $fillable = [
         'user_id',
         'bio',
+        'payment_method',
     ];
 
     public function user()

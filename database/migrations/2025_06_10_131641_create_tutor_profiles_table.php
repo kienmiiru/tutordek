@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->text('bio')->nullable();
+            $table->text('payment_method')->nullable(); // no. rek, e-wallet, dll.
             $table->timestamps();
         });
     }
