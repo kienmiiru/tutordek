@@ -20,7 +20,11 @@
             <i class="fas fa-money-bill-wave w-6"></i>
             <span>Kelola Pembayaran</span>
         </a>
-        <a href="#" class="flex items-center px-4 py-3 text-red-600 hover:bg-gray-100">
+        <a href="{{ route('account.settings') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-cog w-6"></i>
+            <span>Pengaturan Akun</span>
+        </a>
+        <a href="{{ route('logout') }}" class="flex items-center px-4 py-3 text-red-600 hover:bg-gray-100">
             <i class="fas fa-sign-out-alt w-6"></i>
             <span>Logout</span>
         </a>
