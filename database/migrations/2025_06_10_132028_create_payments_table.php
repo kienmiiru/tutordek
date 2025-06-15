@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('teaching_session_id')->constrained('teaching_sessions')->onDelete('cascade');
-            $table->string('payment_proof_path'); // path to the payment proof uploaded by the student
-            $table->foreignId('verified_by')->constrained('users')->onDelete('cascade');
+            $table->string('payment_proof_path')->nullable(); // path to the payment proof uploaded by the student
+            $table->foreignId('verified_by')->nullable()->constrained('users')->onDelete('cascade');
             $table->dateTime('verified_at')->nullable();
             $table->enum('status', ['pending', 'verified', 'rejected']);
             $table->timestamps();

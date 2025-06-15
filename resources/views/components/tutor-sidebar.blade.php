@@ -4,21 +4,17 @@
         <p class="text-gray-600">Dashboard</p>
     </div>
     <nav class="mt-4">
-        <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
+        <a href="{{ route('tutor.availabilities.index') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
             <i class="fas fa-calendar-alt w-6"></i>
             <span>Kelola Jadwal Ketersediaan</span>
         </a>
-        <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
+        <a href="{{ route('tutor.sessions.index') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
             <i class="fas fa-chalkboard-teacher w-6"></i>
             <span>Kelola Sesi Les</span>
         </a>
         <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
             <i class="fas fa-history w-6"></i>
             <span>Riwayat Pembelajaran</span>
-        </a>
-        <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
-            <i class="fas fa-money-bill-wave w-6"></i>
-            <span>Kelola Pembayaran</span>
         </a>
         <a href="{{ route('account.settings') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
             <i class="fas fa-cog w-6"></i>

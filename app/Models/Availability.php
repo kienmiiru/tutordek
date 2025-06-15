@@ -10,13 +10,7 @@ class Availability extends Model
     use HasFactory;
 
     const DAYS_OF_WEEK = [
-        'Senin',
-        'Selasa',
-        'Rabu',
-        'Kamis',
-        'Jumat',
-        'Sabtu',
-        'Minggu'
+        'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
     ];
 
     protected $fillable = [

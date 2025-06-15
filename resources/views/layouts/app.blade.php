@@ -12,7 +12,7 @@
         @yield('sidebar')
 
         <!-- Main Content -->
-        <div class="flex-1 p-8">
+        <div class="flex-1 p-8 overflow-x-scroll">
             @yield('content')
         </div>
     </div>

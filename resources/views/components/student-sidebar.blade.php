@@ -4,7 +4,7 @@
         <p class="text-gray-600">Dashboard</p>
     </div>
     <nav class="mt-4">
-        <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
+        <a href="{{ route('student.tutor-catalog.index') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
             <i class="fas fa-book-open w-6"></i>
             <span>Katalog Pengajar</span>
         </a>
@@ -12,7 +12,7 @@
             <i class="fas fa-history w-6"></i>
             <span>Riwayat Pembelajaran</span>
         </a>
-        <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
+        <a href="{{ route('student.payments.index') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
             <i class="fas fa-credit-card w-6"></i>
             <span>Pembayaran</span>
         </a>
