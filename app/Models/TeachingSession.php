@@ -19,14 +19,17 @@ class TeachingSession extends Model
         'student_id',
         'tutor_id',
         'subject_id',
-        'scheduled_at',
+        'start_at',
+        'end_at',
         'price',
         'status',
         'meeting_link',
+        'material',
     ];
 
     protected $casts = [
-        'scheduled_at' => 'datetime',
+        'start_at' => 'datetime',
+        'end_at' => 'datetime',
     ];
 
     public function student()

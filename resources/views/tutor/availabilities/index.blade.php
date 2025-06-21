@@ -50,11 +50,6 @@
                                 <label for="end_time" class="block text-sm font-medium text-gray-700">Waktu Selesai</label>
                                 <input type="time" name="end_time" id="end_time" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                             </div>
-
-                            <div>
-                                <label for="price" class="block text-sm font-medium text-gray-700">Harga per Sesi (Rp)</label>
-                                <input type="number" name="price" id="price" required min="0" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                            </div>
                         </div>
 
                         <div class="mt-4">
@@ -84,7 +79,11 @@
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $availability->subject->name }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $availability->day_of_week }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $availability->start_time->format('H:i') }} - {{ $availability->end_time->format('H:i') }}</td>
+                                            @if($availability->price === null)
+                                                <td class="px-6 py-4 whitespace-nowrap">Belum ditentukan admin</td>
+                                            @else
                                             <td class="px-6 py-4 whitespace-nowrap">Rp {{ number_format($availability->price, 0, ',', '.') }}</td>
+                                            @endif
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                                 <form action="{{ route('tutor.availabilities.destroy', $availability) }}" method="POST" class="inline">
                                                     @csrf

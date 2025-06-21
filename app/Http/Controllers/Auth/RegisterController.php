@@ -21,7 +21,6 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|in:student,tutor',
         ], [
             'name.required' => 'Nama harus diisi',
             'email.required' => 'Email harus diisi',
@@ -30,15 +29,13 @@ class RegisterController extends Controller
             'password.required' => 'Password harus diisi',
             'password.min' => 'Password harus minimal 8 karakter',
             'password.confirmed' => 'Password tidak cocok',
-            'role.required' => 'Role harus dipilih',
-            'role.in' => 'Role tidak valid',
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role,
+            'role' => 'student',
         ]);
 
         Auth::login($user);

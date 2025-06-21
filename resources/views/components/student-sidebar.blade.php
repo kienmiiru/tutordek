@@ -8,7 +8,7 @@
             <i class="fas fa-book-open w-6"></i>
             <span>Katalog Pengajar</span>
         </a>
-        <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
+        <a href="{{ route('student.learning-history.index') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
             <i class="fas fa-history w-6"></i>
             <span>Riwayat Pembelajaran</span>
         </a>

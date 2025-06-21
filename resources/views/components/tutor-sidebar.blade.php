@@ -93,7 +93,7 @@
                 <i class="fas fa-chalkboard-teacher w-6"></i>
                 <span>Kelola Sesi Les</span>
             </a>
-            <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
+            <a href="{{ route('tutor.learning-history.index') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
                 <i class="fas fa-history w-6"></i>
                 <span>Riwayat Pembelajaran</span>
             </a>

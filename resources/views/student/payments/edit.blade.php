@@ -24,10 +24,10 @@
                                     <span class="font-medium">Mata Pelajaran:</span> {{ $payment->teachingSession->subject->name }}
                                 </p>
                                 <p class="text-sm text-gray-600">
-                                    <span class="font-medium">Tanggal:</span> {{ $payment->teachingSession->scheduled_at->format('d F Y') }}
+                                    <span class="font-medium">Tanggal:</span> {{ $payment->teachingSession->start_at->format('d F Y') }}
                                 </p>
                                 <p class="text-sm text-gray-600">
-                                    <span class="font-medium">Waktu:</span> {{ $payment->teachingSession->scheduled_at->format('H:i') }}
+                                    <span class="font-medium">Waktu:</span> {{ $payment->teachingSession->start_at->format('H:i') . '-' . $payment->teachingSession->end_at->format('H:i') }}
                                 </p>
                                 <p class="text-sm text-gray-600">
                                     <span class="font-medium">Jumlah:</span> Rp {{ number_format($payment->teachingSession->price, 0, ',', '.') }}
@@ -39,7 +39,7 @@
                             <h3 class="text-lg font-medium text-gray-900">Metode Pembayaran</h3>
                             <div class="mt-2">
                                 <p class="text-sm text-gray-600">
-                                    {{ $payment->teachingSession->tutor->tutorProfile->payment_method }}
+                                    {{ $paymentMethod->payment_method }}
                                 </p>
                             </div>
                         </div>

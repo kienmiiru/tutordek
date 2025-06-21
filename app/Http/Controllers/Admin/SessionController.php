@@ -18,8 +18,6 @@ class SessionController extends Controller
 
     public function updatePaymentStatus(Request $request, TeachingSession $session)
     {
-        $this->authorize('update', $session);
-        
         $request->validate([
             'status' => 'required|in:' . Payment::STATUS_VERIFIED . ',' . Payment::STATUS_REJECTED,
         ]);

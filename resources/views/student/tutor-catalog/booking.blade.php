@@ -14,9 +14,6 @@
 
                 <div class="bg-gray-50 rounded-lg p-6 mb-8">
                     <div class="flex items-center mb-4">
-                        <div class="flex-shrink-0">
-                            <img class="h-12 w-12 rounded-full" src="{{ $availability->tutor->profile_photo_url }}" alt="{{ $availability->tutor->name }}">
-                        </div>
                         <div class="ml-4">
                             <h3 class="text-lg font-medium text-gray-900">{{ $availability->tutor->name }}</h3>
                             <p class="text-sm text-gray-500">{{ $availability->subject->name }}</p>

@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Availability;
 use App\Models\Payment;
+use App\Models\PaymentMethod;
 use App\Models\Subject;
 use App\Models\TeachingSession;
 use App\Models\TutorProfile;
@@ -50,6 +51,44 @@ class DatabaseSeeder extends Seeder
                 'description' => fake()->paragraph()
             ]);
         }
+
+        // create admin without factory
+        User::create([
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('password'),
+            'role' => User::ROLE_ADMIN,
+            'email_verified_at' => now(),
+            'remember_token' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        User::create([
+            'name' => 'Ilham',
+            'email' => 'ilham@itb.ac.id',
+            'password' => bcrypt('password'),
+            'role' => User::ROLE_TUTOR,
+            'email_verified_at' => now(),
+            'remember_token' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        User::create([
+            'name' => 'Juang',
+            'email' => 'juang@unej.ac.id',
+            'password' => bcrypt('password'),
+            'role' => User::ROLE_STUDENT,
+            'email_verified_at' => now(),
+            'remember_token' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        PaymentMethod::create([
+            'payment_method' => '1234567890 (BRI)',
+        ]);
 
 
         // // Create tutors with profiles

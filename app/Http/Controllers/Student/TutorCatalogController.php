@@ -15,6 +15,7 @@ class TutorCatalogController extends Controller
     public function index()
     {
         $availabilities = Availability::with(['tutor', 'subject'])
+            ->where('price', '>', 0)
             ->orderBy('day_of_week')
             ->orderBy('start_time')
             ->get();
@@ -41,7 +42,8 @@ class TutorCatalogController extends Controller
             'student_id' => Auth::id(),
             'tutor_id' => $availability->tutor_id,
             'subject_id' => $availability->subject_id,
-            'scheduled_at' => $validated['date'] . ' ' . $availability->start_time->toTimeString(),
+            'start_at' => $validated['date'] . ' ' . $availability->start_time->toTimeString(),
+            'end_at' => $validated['date'] . ' ' . $availability->end_time->toTimeString(),
             'status' => 'pending_payment',
             'price' => $availability->price,
         ]);

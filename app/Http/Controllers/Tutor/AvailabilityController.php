@@ -27,7 +27,6 @@ class AvailabilityController extends Controller
             'day_of_week' => 'required|in:' . implode(',', Availability::DAYS_OF_WEEK),
             'start_time' => 'required|date_format:H:i',
             'end_time' => 'required|date_format:H:i|after:start_time',
-            'price' => 'required|integer|min:0',
         ]);
 
         $validated['tutor_id'] = Auth::id();
@@ -47,7 +46,6 @@ class AvailabilityController extends Controller
             'day_of_week' => 'required|in:' . implode(',', Availability::DAYS_OF_WEEK),
             'start_time' => 'required|date_format:H:i',
             'end_time' => 'required|date_format:H:i|after:start_time',
-            'price' => 'required|integer|min:0',
         ]);
 
         $availability->update($validated);

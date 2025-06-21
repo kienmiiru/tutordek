@@ -58,12 +58,10 @@ class AccountSettingsController extends Controller
         if ($user->isTutor()) {
             $validatedTutor = $request->validate([
                 'bio' => ['nullable', 'string', 'max:1000'],
-                'payment_method' => ['nullable', 'string', 'max:255'],
             ]);
 
             $tutorProfile = $user->tutorProfile ?? new TutorProfile(['user_id' => $user->id]);
             $tutorProfile->bio = $validatedTutor['bio'];
-            $tutorProfile->payment_method = $validatedTutor['payment_method'];
             $tutorProfile->save();
         }
 

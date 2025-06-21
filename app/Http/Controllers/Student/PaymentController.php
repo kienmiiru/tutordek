@@ -8,6 +8,7 @@ use App\Models\TeachingSession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Models\PaymentMethod;
 
 class PaymentController extends Controller
 {
@@ -39,8 +40,10 @@ class PaymentController extends Controller
             return redirect()->route('student.payments.index')
                 ->with('error', 'Pembayaran ini tidak dapat diubah.');
         }
+
+        $paymentMethod = PaymentMethod::first();
         
-        return view('student.payments.edit', compact('payment'));
+        return view('student.payments.edit', compact('payment', 'paymentMethod'));
     }
 
     public function update(Request $request, Payment $payment)

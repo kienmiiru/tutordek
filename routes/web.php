@@ -45,6 +45,11 @@ Route::middleware(['auth', 'role:student'])->prefix('student')->name('student.')
     Route::get('/payments/{payment}', [App\Http\Controllers\Student\PaymentController::class, 'show'])->name('payments.show');
     Route::get('/payments/{payment}/edit', [App\Http\Controllers\Student\PaymentController::class, 'edit'])->name('payments.edit');
     Route::put('/payments/{payment}', [App\Http\Controllers\Student\PaymentController::class, 'update'])->name('payments.update');
+    
+    // Learning history routes
+    Route::get('/learning-history', [App\Http\Controllers\Student\LearningHistoryController::class, 'index'])->name('learning-history.index');
+    Route::get('/learning-history/{session}', [App\Http\Controllers\Student\LearningHistoryController::class, 'show'])->name('learning-history.show');
+    Route::get('/learning-history/{session}/download-material', [App\Http\Controllers\Student\LearningHistoryController::class, 'downloadMaterial'])->name('learning-history.download-material');
 });
 
 Route::middleware(['auth', 'role:tutor'])->prefix('tutor')->name('tutor.')->group(function () {
@@ -58,9 +63,16 @@ Route::middleware(['auth', 'role:tutor'])->prefix('tutor')->name('tutor.')->grou
     Route::put('/sessions/{session}/session-status', [App\Http\Controllers\Tutor\SessionController::class, 'updateSessionStatus'])->name('sessions.update-session-status');
     Route::put('/sessions/{session}/meeting-link', [App\Http\Controllers\Tutor\SessionController::class, 'updateMeetingLink'])->name('sessions.update-meeting-link');
     Route::put('/sessions/{session}/material', [App\Http\Controllers\Tutor\SessionController::class, 'updateMaterial'])->name('sessions.update-material');
+    Route::delete('/sessions/{session}/material', [App\Http\Controllers\Tutor\SessionController::class, 'deleteMaterial'])->name('sessions.delete-material');
+    
+    // Learning history routes
+    Route::get('/learning-history', [App\Http\Controllers\Tutor\SessionController::class, 'history'])->name('learning-history.index');
+    Route::get('/learning-history/{session}', [App\Http\Controllers\Tutor\SessionController::class, 'showHistory'])->name('learning-history.show');
 });
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::view('/dashboard', 'dashboard.admin')->name('dashboard');
+    
     Route::get('/sessions', [App\Http\Controllers\Admin\SessionController::class, 'index'])->name('sessions.index');
     Route::put('/sessions/{session}/payment-status', [App\Http\Controllers\Admin\SessionController::class, 'updatePaymentStatus'])->name('sessions.update-payment-status');
     Route::get('/availabilities', [App\Http\Controllers\Admin\AvailabilityController::class, 'index'])->name('availabilities.index');

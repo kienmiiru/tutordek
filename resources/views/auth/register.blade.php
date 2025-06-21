@@ -3,7 +3,7 @@
 @section('content')
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-            <h2 class="text-2xl font-bold text-center mb-6">Daftar</h2>
+            <h2 class="text-2xl font-bold text-center mb-6">Daftar Sebagai Pelajar</h2>
 
             <form method="POST" action="{{ route('register') }}">
                 @csrf
@@ -40,27 +40,6 @@
                         Password</label>
                     <input id="password_confirmation" type="password" name="password_confirmation" required
                         class="mt-1 block p-2 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                </div>
-
-                <div class="mb-6">
-                    <label class="block text-sm font-medium text-gray-700">Daftar sebagai</label>
-                    <div class="mt-2 space-y-2">
-                        <div class="flex items-center">
-                            <input id="role_student" type="radio" name="role" value="student"
-                                {{ old('role') == 'student' ? 'checked' : '' }}
-                                class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
-                            <label for="role_student" class="ml-3 block text-sm font-medium text-gray-700">Siswa</label>
-                        </div>
-                        <div class="flex items-center">
-                            <input id="role_tutor" type="radio" name="role" value="tutor"
-                                {{ old('role') == 'tutor' ? 'checked' : '' }}
-                                class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
-                            <label for="role_tutor" class="ml-3 block text-sm font-medium text-gray-700">Tutor</label>
-                        </div>
-                    </div>
-                    @error('role')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                    @enderror
                 </div>
 
                 <div class="flex items-center justify-between">
