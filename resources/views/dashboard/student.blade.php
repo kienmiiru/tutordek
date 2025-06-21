@@ -11,4 +11,4 @@
         <h2 class="text-2xl font-bold mb-4">Selamat Datang! Anda Login Sebagai {{ auth()->user()->name }}</h2>
         <p class="text-gray-600">Silakan pilih menu di sidebar untuk memulai.</p>
     </div>
-@endsection 
+@endsection
