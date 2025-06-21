@@ -12,11 +12,11 @@ class AvailabilityPolicy
 
     public function update(User $user, Availability $availability)
     {
-        return $user->id === $availability->tutor_id;
+        return $user->id === $availability->tutor_id || $user->isAdmin();
     }
 
     public function delete(User $user, Availability $availability)
     {
-        return $user->id === $availability->tutor_id;
+        return $user->id === $availability->tutor_id || $user->isAdmin();
     }
 } 

@@ -57,6 +57,20 @@ Route::middleware(['auth', 'role:tutor'])->prefix('tutor')->name('tutor.')->grou
     Route::put('/sessions/{session}/payment-status', [App\Http\Controllers\Tutor\SessionController::class, 'updatePaymentStatus'])->name('sessions.update-payment-status');
     Route::put('/sessions/{session}/session-status', [App\Http\Controllers\Tutor\SessionController::class, 'updateSessionStatus'])->name('sessions.update-session-status');
     Route::put('/sessions/{session}/meeting-link', [App\Http\Controllers\Tutor\SessionController::class, 'updateMeetingLink'])->name('sessions.update-meeting-link');
+    Route::put('/sessions/{session}/material', [App\Http\Controllers\Tutor\SessionController::class, 'updateMaterial'])->name('sessions.update-material');
+});
+
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/sessions', [App\Http\Controllers\Admin\SessionController::class, 'index'])->name('sessions.index');
+    Route::put('/sessions/{session}/payment-status', [App\Http\Controllers\Admin\SessionController::class, 'updatePaymentStatus'])->name('sessions.update-payment-status');
+    Route::get('/availabilities', [App\Http\Controllers\Admin\AvailabilityController::class, 'index'])->name('availabilities.index');
+    Route::put('/availabilities/{availability}/price', [App\Http\Controllers\Admin\AvailabilityController::class, 'updatePrice'])->name('availabilities.update-price');
+    Route::get('/tutors', [App\Http\Controllers\Admin\TutorAccountController::class, 'index'])->name('tutor-accounts.index');
+    Route::post('/tutors', [App\Http\Controllers\Admin\TutorAccountController::class, 'create'])->name('tutor-accounts.create');
+    Route::put('/tutors/{tutor}', [App\Http\Controllers\Admin\TutorAccountController::class, 'update'])->name('tutor-accounts.update');
+    Route::delete('/tutors/{tutor}', [App\Http\Controllers\Admin\TutorAccountController::class, 'destroy'])->name('tutor-accounts.destroy');
+    Route::get('/payment-methods', [App\Http\Controllers\Admin\PaymentMethodController::class, 'index'])->name('payment-methods.index');
+    Route::put('/payment-methods', [App\Http\Controllers\Admin\PaymentMethodController::class, 'update'])->name('payment-methods.update');
 });
 
 Route::middleware(['auth'])->group(function () {

@@ -24,7 +24,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
             
             $user = Auth::user();
-            return redirect()->intended($user->isTutor() ? '/tutor/dashboard' : '/student/dashboard');
+            return redirect()->intended($user->isTutor() ? '/tutor/dashboard' : ($user->isStudent() ? '/student/dashboard' : '/admin/dashboard'));
         }
 
         return back()->withErrors([

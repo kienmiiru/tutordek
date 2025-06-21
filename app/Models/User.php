@@ -14,6 +14,7 @@ class User extends Authenticatable
 
     const ROLE_TUTOR = 'tutor';
     const ROLE_STUDENT = 'student';
+    const ROLE_ADMIN = 'admin';
 
     /**
      * The attributes that are mass assignable.
@@ -79,5 +80,10 @@ class User extends Authenticatable
     public function isStudent()
     {
         return $this->role === self::ROLE_STUDENT;
+    }
+
+    public function isAdmin()
+    {
+        return $this->role === self::ROLE_ADMIN;
     }
 }

@@ -83,4 +83,31 @@ class SessionController extends Controller
         return redirect()->route('tutor.sessions.show', $session)
             ->with('success', 'Link meeting berhasil diupdate');
     }
+
+    public function updateMaterial(Request $request, TeachingSession $session)
+    {
+        $this->authorize('update', $session);
+        
+        $request->validate([
+            'material' => 'required|file|max:2048',
+        ]);
+
+        $path = $request->file('material')->store('materials', 'public');
+        $session->material = $path;
+        $session->save();
+
+        return redirect()->route('tutor.sessions.show', $session)
+            ->with('success', 'Material berhasil diupdate');
+    }
+
+    public function history()
+    {
+        $sessions = TeachingSession::with(['student', 'subject', 'payment'])
+            ->where('tutor_id', Auth::id())
+            ->whereIn('status', [TeachingSession::STATUS_COMPLETED, TeachingSession::STATUS_REJECTED])
+            ->orderBy('scheduled_at', 'desc')
+            ->paginate(10);
+
+        return view('tutor.sessions.history', compact('sessions'));
+    }
 } 
