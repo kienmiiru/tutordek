@@ -23,6 +23,10 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+Route::get('/home', function () {
+    return view('landing');
+});
+
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
     Route::post('register', [RegisterController::class, 'register']);
@@ -39,7 +43,7 @@ Route::middleware(['auth', 'role:student'])->prefix('student')->name('student.')
     Route::get('/tutor-catalog', [App\Http\Controllers\Student\TutorCatalogController::class, 'index'])->name('tutor-catalog.index');
     Route::get('/tutor-catalog/{availability}/booking', [App\Http\Controllers\Student\TutorCatalogController::class, 'showBookingForm'])->name('tutor-catalog.booking');
     Route::post('/tutor-catalog/{availability}/booking', [App\Http\Controllers\Student\TutorCatalogController::class, 'storeBooking'])->name('tutor-catalog.store-booking');
-    
+
     // Payment routes
     Route::get('/payments', [App\Http\Controllers\Student\PaymentController::class, 'index'])->name('payments.index');
     Route::get('/payments/{payment}', [App\Http\Controllers\Student\PaymentController::class, 'show'])->name('payments.show');
@@ -50,7 +54,7 @@ Route::middleware(['auth', 'role:student'])->prefix('student')->name('student.')
 Route::middleware(['auth', 'role:tutor'])->prefix('tutor')->name('tutor.')->group(function () {
     Route::get('/dashboard', [TutorDashboardController::class, 'index'])->name('dashboard');
     Route::resource('availabilities', AvailabilityController::class);
-    
+
     // Session management routes
     Route::get('/sessions', [App\Http\Controllers\Tutor\SessionController::class, 'index'])->name('sessions.index');
     Route::get('/sessions/{session}', [App\Http\Controllers\Tutor\SessionController::class, 'show'])->name('sessions.show');

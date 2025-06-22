@@ -1,35 +1,3 @@
-{{-- <div class="w-64 bg-white shadow-lg">
-    <div class="p-4">
-        <h1 class="text-2xl font-bold text-gray-800">TutorDek</h1>
-        <p class="text-gray-600">Dashboard</p>
-    </div>
-
-    <nav class="mt-4">
-        <a href="{{ route('tutor.availabilities.index') }}"
-            class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
-            <i class="fas fa-calendar-alt w-6"></i>
-            <span>Kelola Jadwal Ketersediaan</span>
-        </a>
-        <a href="{{ route('tutor.sessions.index') }}"
-            class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
-            <i class="fas fa-chalkboard-teacher w-6"></i>
-            <span>Kelola Sesi Les</span>
-        </a>
-        <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
-            <i class="fas fa-history w-6"></i>
-            <span>Riwayat Pembelajaran</span>
-        </a>
-        <a href="{{ route('account.settings') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
-            <i class="fas fa-cog w-6"></i>
-            <span>Pengaturan Akun</span>
-        </a>
-        <a href="{{ route('logout') }}" class="flex items-center px-4 py-3 text-red-600 hover:bg-gray-100">
-            <i class="fas fa-sign-out-alt w-6"></i>
-            <span>Logout</span>
-        </a>
-    </nav>
-</div> --}}
-
 <div x-data="{
     open: false,
     isMobile: window.innerWidth < 1024,
@@ -43,7 +11,7 @@
     }
 }" @resize.window="isMobile = window.innerWidth < 1024">
     <!-- Navbar Mobile -->
-    <nav class="flex w-screen fixed p-3 bg-amber-300  lg:hidden">
+    <nav class="flex w-screen fixed p-3 bg-sky-400  lg:hidden">
         <button @click="open = !open" class="focus:outline-none">
             <!-- Burger Icon (default visible) -->
             <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -58,7 +26,7 @@
             </svg>
         </button>
 
-        <div class="flex items-center bg-amber-300">
+        <div class="flex items-center bg-sky-400">
             <span class="text-xl font-bold text-white -mt-1 ml-3">TutorDek</span>
         </div>
     </nav>
@@ -81,7 +49,7 @@
 
         <div class="mt-2">
             <a href="{{ route('tutor.dashboard') }}"
-                class="text-2xl font-bold text-black inline-block -mt-2 w-full bg-amber-300 p-5">TutorDek</a>
+                class="text-2xl font-bold text-white inline-block -mt-2 w-full bg-sky-400 p-5">TutorDek</a>
 
             <a href="{{ route('tutor.availabilities.index') }}"
                 class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
