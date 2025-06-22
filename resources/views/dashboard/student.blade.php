@@ -42,7 +42,7 @@
                 </div>
                 <div class="ml-4">
                     <p class="text-sm font-medium text-gray-600">Sesi Selesai</p>
-                    <p class="text-2xl font-semibold text-gray-900">{{ $completedSessions }}</p>
+                    <p class="text-2xl font-semibold text-gray-900">{{ $completedSessions }} <span class="text-sm text-gray-500">({{ $completedSessionsThisMonth }} bulan ini)</span></p>
                 </div>
             </div>
         </div>
@@ -55,18 +55,6 @@
                 <div class="ml-4">
                     <p class="text-sm font-medium text-gray-600">Menunggu Pembayaran</p>
                     <p class="text-2xl font-semibold text-gray-900">{{ $pendingPayments }}</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="bg-white rounded-lg shadow p-6">
-            <div class="flex items-center">
-                <div class="p-3 rounded-full bg-purple-100 text-purple-600">
-                    <i class="fas fa-money-bill text-xl"></i>
-                </div>
-                <div class="ml-4">
-                    <p class="text-sm font-medium text-gray-600">Total Pengeluaran</p>
-                    <p class="text-2xl font-semibold text-gray-900">Rp {{ number_format($totalSpent, 0, ',', '.') }}</p>
                 </div>
             </div>
         </div>

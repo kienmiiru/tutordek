@@ -3,36 +3,7 @@
 @section('title', 'Admin Dashboard - TutorDek')
 
 @section('sidebar')
-<div class="fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg">
-    <div class="flex items-center justify-center h-16 bg-blue-600 text-white">
-        <h1 class="text-xl font-bold">TutorDek Admin</h1>
-    </div>
-    
-    <nav class="mt-8">
-        <div class="px-4 space-y-2">
-            <a href="{{ route('admin.dashboard') }}" class="flex items-center px-4 py-2 text-gray-700 bg-blue-100 rounded-lg">
-                <i class="fas fa-tachometer-alt mr-3"></i>
-                Dashboard
-            </a>
-            <a href="{{ route('admin.sessions.index') }}" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">
-                <i class="fas fa-calendar-alt mr-3"></i>
-                Sessions
-            </a>
-            <a href="{{ route('admin.availabilities.index') }}" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">
-                <i class="fas fa-clock mr-3"></i>
-                Availabilities
-            </a>
-            <a href="{{ route('admin.tutor-accounts.index') }}" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">
-                <i class="fas fa-users mr-3"></i>
-                Tutor Accounts
-            </a>
-            <a href="{{ route('admin.payment-methods.index') }}" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">
-                <i class="fas fa-credit-card mr-3"></i>
-                Payment Methods
-            </a>
-        </div>
-    </nav>
-</div>
+    @include('components.admin-sidebar')
 @endsection
 
 @section('content')
@@ -40,7 +11,7 @@
     <div class="flex justify-between items-center">
         <h1 class="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
         <div class="text-sm text-gray-500">
-            Welcome back, {{ auth()->user()->name }}
+            Selamat datang kembali, {{ auth()->user()->name }}
         </div>
     </div>
 
@@ -58,8 +29,8 @@
                     <i class="fas fa-calendar-alt text-xl"></i>
                 </div>
                 <div class="ml-4">
-                    <p class="text-sm font-medium text-gray-600">Total Sessions</p>
-                    <p class="text-2xl font-semibold text-gray-900">{{ \App\Models\TeachingSession::count() }}</p>
+                    <p class="text-sm font-medium text-gray-600">Total Sesi</p>
+                    <p class="text-2xl font-semibold text-gray-900">{{ $totalSessions }}</p>
                 </div>
             </div>
         </div>
@@ -70,8 +41,8 @@
                     <i class="fas fa-users text-xl"></i>
                 </div>
                 <div class="ml-4">
-                    <p class="text-sm font-medium text-gray-600">Total Tutors</p>
-                    <p class="text-2xl font-semibold text-gray-900">{{ \App\Models\User::where('role', 'tutor')->count() }}</p>
+                    <p class="text-sm font-medium text-gray-600">Total Tutor</p>
+                    <p class="text-2xl font-semibold text-gray-900">{{ $totalTutors }}</p>
                 </div>
             </div>
         </div>
@@ -82,8 +53,8 @@
                     <i class="fas fa-clock text-xl"></i>
                 </div>
                 <div class="ml-4">
-                    <p class="text-sm font-medium text-gray-600">Pending Payments</p>
-                    <p class="text-2xl font-semibold text-gray-900">{{ \App\Models\Payment::where('status', 'pending')->count() }}</p>
+                    <p class="text-sm font-medium text-gray-600">Pembayaran Pending</p>
+                    <p class="text-2xl font-semibold text-gray-900">{{ $totalPendingPayments }}</p>
                 </div>
             </div>
         </div>
@@ -94,8 +65,8 @@
                     <i class="fas fa-book text-xl"></i>
                 </div>
                 <div class="ml-4">
-                    <p class="text-sm font-medium text-gray-600">Total Subjects</p>
-                    <p class="text-2xl font-semibold text-gray-900">{{ \App\Models\Subject::count() }}</p>
+                    <p class="text-sm font-medium text-gray-600">Total Mata Pelajaran</p>
+                    <p class="text-2xl font-semibold text-gray-900">{{ $totalSubjects }}</p>
                 </div>
             </div>
         </div>
@@ -104,31 +75,31 @@
     <!-- Quick Actions -->
     <div class="bg-white rounded-lg shadow">
         <div class="px-6 py-4 border-b border-gray-200">
-            <h3 class="text-lg font-medium text-gray-900">Quick Actions</h3>
+            <h3 class="text-lg font-medium text-gray-900">Aksi Cepat</h3>
         </div>
         <div class="p-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <a href="{{ route('admin.sessions.index') }}" class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
                     <i class="fas fa-calendar-check text-blue-600 mr-3"></i>
                     <div>
-                        <p class="font-medium text-gray-900">Manage Sessions</p>
-                        <p class="text-sm text-gray-500">View and manage teaching sessions</p>
+                        <p class="font-medium text-gray-900">Kelola Sesi</p>
+                        <p class="text-sm text-gray-500">Lihat dan kelola sesi pembelajaran</p>
                     </div>
                 </a>
 
                 <a href="{{ route('admin.tutor-accounts.index') }}" class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
                     <i class="fas fa-user-plus text-green-600 mr-3"></i>
                     <div>
-                        <p class="font-medium text-gray-900">Manage Tutors</p>
-                        <p class="text-sm text-gray-500">Add, edit, or remove tutor accounts</p>
+                        <p class="font-medium text-gray-900">Kelola Tutor</p>
+                        <p class="text-sm text-gray-500">Tambah, edit, atau hapus akun tutor</p>
                     </div>
                 </a>
 
                 <a href="{{ route('admin.payment-methods.index') }}" class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
                     <i class="fas fa-credit-card text-purple-600 mr-3"></i>
                     <div>
-                        <p class="font-medium text-gray-900">Payment Settings</p>
-                        <p class="text-sm text-gray-500">Configure payment methods</p>
+                        <p class="font-medium text-gray-900">Pengaturan Pembayaran</p>
+                        <p class="text-sm text-gray-500">Konfigurasi metode pembayaran</p>
                     </div>
                 </a>
             </div>
@@ -138,16 +109,16 @@
     <!-- Recent Sessions -->
     <div class="bg-white rounded-lg shadow">
         <div class="px-6 py-4 border-b border-gray-200">
-            <h3 class="text-lg font-medium text-gray-900">Recent Sessions</h3>
+            <h3 class="text-lg font-medium text-gray-900">Sesi Terbaru</h3>
         </div>
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Student</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Siswa</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tutor</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subject</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mata Pelajaran</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                     </tr>
                 </thead>

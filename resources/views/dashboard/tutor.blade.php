@@ -58,18 +58,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="bg-white rounded-lg shadow p-6">
-            <div class="flex items-center">
-                <div class="p-3 rounded-full bg-purple-100 text-purple-600">
-                    <i class="fas fa-money-bill text-xl"></i>
-                </div>
-                <div class="ml-4">
-                    <p class="text-sm font-medium text-gray-600">Total Pendapatan</p>
-                    <p class="text-2xl font-semibold text-gray-900">Rp {{ number_format($totalEarnings, 0, ',', '.') }}</p>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- Quick Actions -->

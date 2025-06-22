@@ -71,7 +71,7 @@ Route::middleware(['auth', 'role:tutor'])->prefix('tutor')->name('tutor.')->grou
 });
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
-    Route::view('/dashboard', 'dashboard.admin')->name('dashboard');
+    Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     
     Route::get('/sessions', [App\Http\Controllers\Admin\SessionController::class, 'index'])->name('sessions.index');
     Route::put('/sessions/{session}/payment-status', [App\Http\Controllers\Admin\SessionController::class, 'updatePaymentStatus'])->name('sessions.update-payment-status');

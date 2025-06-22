@@ -151,13 +151,6 @@
                 </div>
                 <div class="p-6">
                     <div class="flex items-center">
-                        <div class="flex-shrink-0 h-16 w-16">
-                            <div class="h-16 w-16 rounded-full bg-green-500 flex items-center justify-center">
-                                <span class="text-white font-medium text-lg">
-                                    {{ substr($session->student->name, 0, 2) }}
-                                </span>
-                            </div>
-                        </div>
                         <div class="ml-4">
                             <h3 class="text-lg font-medium text-gray-900">{{ $session->student->name }}</h3>
                             <p class="text-sm text-gray-500">{{ $session->student->email }}</p>

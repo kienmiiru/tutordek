@@ -23,7 +23,6 @@ class LearningHistoryController extends Controller
 
     public function show(TeachingSession $session)
     {
-        // Ensure the student can only view their own sessions
         if ($session->student_id !== Auth::id()) {
             abort(403, 'Unauthorized action.');
         }
@@ -35,7 +34,6 @@ class LearningHistoryController extends Controller
 
     public function downloadMaterial(TeachingSession $session)
     {
-        // Ensure the student can only download materials from their own sessions
         if ($session->student_id !== Auth::id()) {
             abort(403, 'Unauthorized action.');
         }

@@ -28,18 +28,15 @@ class DashboardController extends Controller
         // Statistics
         $totalSessions = $sessions->count();
         $completedSessions = $sessions->where('status', TeachingSession::STATUS_COMPLETED)->count();
-        $upcomingSessions = $sessions->where('start_at', '>', now())
-            ->where('status', TeachingSession::STATUS_CONFIRMED)
-            ->count();
+        $completedSessionsThisMonth = $sessions->where('status', TeachingSession::STATUS_COMPLETED)->where('end_at', '>=', now()->startOfMonth())->count();
         $pendingPayments = $sessions->where('status', TeachingSession::STATUS_PENDING_PAYMENT)->count();
-        $totalSpent = $sessions->where('status', TeachingSession::STATUS_COMPLETED)->sum('price');
         $totalTutors = $sessions->unique('tutor_id')->count();
         
         // Recent sessions (last 5)
         $recentSessions = $sessions->take(5);
         
         // Upcoming sessions
-        $upcomingSessionsList = $sessions->where('start_at', '>', now())
+        $upcomingSessionsList = $sessions->where('end_at', '>', now())
             ->where('status', TeachingSession::STATUS_CONFIRMED)
             ->take(5);
             
@@ -64,14 +61,13 @@ class DashboardController extends Controller
             'availabilities',
             'totalSessions',
             'completedSessions',
-            'upcomingSessions',
             'pendingPayments',
-            'totalSpent',
             'totalTutors',
             'recentSessions',
             'upcomingSessionsList',
             'popularSubjects',
-            'recentPayments'
+            'recentPayments',
+            'completedSessionsThisMonth'
         ));
     }
 } 

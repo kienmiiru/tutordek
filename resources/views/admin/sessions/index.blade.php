@@ -1,46 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Manage Sessions - Admin')
+@section('title', 'Kelola Sesi - Admin')
 
 @section('sidebar')
-<div class="fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg">
-    <div class="flex items-center justify-center h-16 bg-blue-600 text-white">
-        <h1 class="text-xl font-bold">TutorDek Admin</h1>
-    </div>
-    
-    <nav class="mt-8">
-        <div class="px-4 space-y-2">
-            <a href="{{ route('admin.dashboard') }}" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">
-                <i class="fas fa-tachometer-alt mr-3"></i>
-                Dashboard
-            </a>
-            <a href="{{ route('admin.sessions.index') }}" class="flex items-center px-4 py-2 text-gray-700 bg-blue-100 rounded-lg">
-                <i class="fas fa-calendar-alt mr-3"></i>
-                Sessions
-            </a>
-            <a href="{{ route('admin.availabilities.index') }}" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">
-                <i class="fas fa-clock mr-3"></i>
-                Availabilities
-            </a>
-            <a href="{{ route('admin.tutor-accounts.index') }}" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">
-                <i class="fas fa-users mr-3"></i>
-                Tutor Accounts
-            </a>
-            <a href="{{ route('admin.payment-methods.index') }}" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">
-                <i class="fas fa-credit-card mr-3"></i>
-                Payment Methods
-            </a>
-        </div>
-    </nav>
-</div>
+    @include('components.admin-sidebar')
 @endsection
 
 @section('content')
 <div class="space-y-6">
     <div class="flex justify-between items-center">
-        <h1 class="text-3xl font-bold text-gray-900">Manage Sessions</h1>
+        <h1 class="text-3xl font-bold text-gray-900">Kelola Sesi</h1>
         <a href="{{ route('admin.dashboard') }}" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">
-            <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard
+            <i class="fas fa-arrow-left mr-2"></i>Kembali ke Dashboard
         </a>
     </div>
 
@@ -58,7 +29,7 @@
                     <i class="fas fa-calendar-alt text-xl"></i>
                 </div>
                 <div class="ml-4">
-                    <p class="text-sm font-medium text-gray-600">Total Sessions</p>
+                    <p class="text-sm font-medium text-gray-600">Total Sesi</p>
                     <p class="text-2xl font-semibold text-gray-900">{{ $sessions->count() }}</p>
                 </div>
             </div>
@@ -70,7 +41,7 @@
                     <i class="fas fa-clock text-xl"></i>
                 </div>
                 <div class="ml-4">
-                    <p class="text-sm font-medium text-gray-600">Pending Verification</p>
+                    <p class="text-sm font-medium text-gray-600">Verifikasi Pending</p>
                     <p class="text-2xl font-semibold text-gray-900">{{ $sessions->where('status', 'awaiting_verification')->count() }}</p>
                 </div>
             </div>
@@ -82,7 +53,7 @@
                     <i class="fas fa-check text-xl"></i>
                 </div>
                 <div class="ml-4">
-                    <p class="text-sm font-medium text-gray-600">Confirmed</p>
+                    <p class="text-sm font-medium text-gray-600">Dikonfirmasi</p>
                     <p class="text-2xl font-semibold text-gray-900">{{ $sessions->where('status', 'confirmed')->count() }}</p>
                 </div>
             </div>
@@ -94,7 +65,7 @@
                     <i class="fas fa-times text-xl"></i>
                 </div>
                 <div class="ml-4">
-                    <p class="text-sm font-medium text-gray-600">Rejected</p>
+                    <p class="text-sm font-medium text-gray-600">Ditolak</p>
                     <p class="text-2xl font-semibold text-gray-900">{{ $sessions->where('status', 'rejected')->count() }}</p>
                 </div>
             </div>
@@ -104,20 +75,20 @@
     <!-- Sessions Table -->
     <div class="bg-white rounded-lg shadow">
         <div class="px-6 py-4 border-b border-gray-200">
-            <h3 class="text-lg font-medium text-gray-900">All Sessions</h3>
+            <h3 class="text-lg font-medium text-gray-900">Semua Sesi</h3>
         </div>
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Student</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Siswa</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tutor</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subject</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date & Time</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Payment Status</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Session Status</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mata Pelajaran</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal & Waktu</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Harga</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status Pembayaran</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status Sesi</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
@@ -152,7 +123,7 @@
                                 </span>
                             @else
                                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
-                                    No Payment
+                                    Tidak ada pembayaran
                                 </span>
                             @endif
                         </td>
@@ -175,14 +146,14 @@
                                     <i class="fas fa-eye"></i> Lihat Bukti Pembayaran
                                 </a>
                             @endif
-                            @if($session->payment && $session->payment->status === 'pending')
+                            @if($session->payment && $session->payment->status === 'pending' && $session->status === 'awaiting_verification')
                                 <form action="{{ route('admin.sessions.update-payment-status', $session) }}" method="POST" class="inline">
                                     @csrf
                                     @method('PUT')
                                     <input type="hidden" name="status" value="verified">
                                     <button type="submit" class="text-green-600 hover:text-green-900 mr-2" 
-                                            onclick="return confirm('Verify this payment?')">
-                                        <i class="fas fa-check"></i> Verify
+                                            onclick="return confirm('Verifikasi pembayaran ini?')">
+                                        <i class="fas fa-check"></i> Verifikasi
                                     </button>
                                 </form>
                                 <form action="{{ route('admin.sessions.update-payment-status', $session) }}" method="POST" class="inline">
@@ -190,8 +161,8 @@
                                     @method('PUT')
                                     <input type="hidden" name="status" value="rejected">
                                     <button type="submit" class="text-red-600 hover:text-red-900" 
-                                            onclick="return confirm('Reject this payment?')">
-                                        <i class="fas fa-times"></i> Reject
+                                            onclick="return confirm('Tolak pembayaran ini?')">
+                                        <i class="fas fa-times"></i> Tolak
                                     </button>
                                 </form>
                             @endif
@@ -200,7 +171,7 @@
                     @empty
                     <tr>
                         <td colspan="8" class="px-6 py-4 text-center text-gray-500">
-                            No sessions found.
+                            Tidak ada sesi yang ditemukan.
                         </td>
                     </tr>
                     @endforelse
