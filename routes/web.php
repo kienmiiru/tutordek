@@ -20,7 +20,7 @@ use App\Http\Controllers\Tutor\AvailabilityController;
 */
 
 Route::get('/', function () {
-    return redirect()->route('login');
+    return redirect('/home');
 });
 
 Route::get('/home', function () {

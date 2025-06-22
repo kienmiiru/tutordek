@@ -12,6 +12,10 @@ class RegisterController extends Controller
 {
     public function showRegistrationForm()
     {
+        if (Auth::check()) {
+            $user = Auth::user();
+            return redirect()->intended($user->isTutor() ? '/tutor/dashboard' : ($user->isStudent() ? '/student/dashboard' : '/admin/dashboard'));
+        }
         return view('auth.register');
     }
 
@@ -40,6 +44,6 @@ class RegisterController extends Controller
 
         Auth::login($user);
 
-        return redirect()->intended($user->isTutor() ? '/tutor/dashboard' : '/student/dashboard');
+        return redirect()->intended('/student/dashboard');
     }
 } 

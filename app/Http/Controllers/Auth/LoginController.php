@@ -10,6 +10,10 @@ class LoginController extends Controller
 {
     public function showLoginForm()
     {
+        if (Auth::check()) {
+            $user = Auth::user();
+            return redirect()->intended($user->isTutor() ? '/tutor/dashboard' : ($user->isStudent() ? '/student/dashboard' : '/admin/dashboard'));
+        }
         return view('auth.login');
     }
 
