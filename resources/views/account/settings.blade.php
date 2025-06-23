@@ -5,8 +5,10 @@
 @section('sidebar')
     @if(auth()->user()->isTutor())
         @include('components.tutor-sidebar')
-    @else
+    @elseif(auth()->user()->isStudent())
         @include('components.student-sidebar')
+    @else
+        @include('components.admin-sidebar')
     @endif
 @endsection
 
